@@ -36,14 +36,16 @@ int cekprecedence(char op) { //program fungsi cekPrecedence yaitu sebuah fungsi 
         return 2;
     } else {
         return 0;
-
-vector<string> KonversiPostfix(vector<string>& infix) {  //program ekspresi matematika yang mengonversi ekspresi infix menjadi postfix (InfixToPostfix). 
-
+    }
+}
+        
+//program ekspresi matematika yang mengonversi ekspresi infix menjadi postfix (InfixToPostfix). 
+vector<string> KonversiPostfix(vector<string>& infix) {  
     vector<string> postfix;
     stack<string> opStack;
 
     for (const string& token : infix) {
-        if (isdigit(token[0]) || (token.length() > 1 && isdigit(token[1]))) {
+        if (isdigit(token[0]) or (token.length() > 1 && isdigit(token[1]))) {
             postfix.push_back(token);
         } else if (token == "(") {
             opStack.push(token);
@@ -68,13 +70,10 @@ vector<string> KonversiPostfix(vector<string>& infix) {  //program ekspresi mate
     }
     return postfix;
 }
-    }
-}
-
-
+    
 vector<string> KonversiInfix(string str) {  //program atau fungsi ekspresi matematika yang berguna untuk mengkonversi string aritmatika menjadi ekspresi infix (StringToInfix)
     vector<string> infix;
-string digit; 
+    string digit; 
 
 for (size_t i = 0; i < str.size(); i++) {
     char currentChar = str[i]; 
