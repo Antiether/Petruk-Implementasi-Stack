@@ -80,3 +80,30 @@ if (!digit.empty()) {
 return infix;
 }
 
+int evaluasi(const vector<string>& postfix) {
+    stack<int> eval;
+
+    for (const string& token : postfix) {
+        if (isdigit(token[0]) || (token.length() > 1 && isdigit(token[1]))) {
+            eval.push(stoi(token));
+        } else {
+            int b = eval.top();
+            eval.pop();
+            int a = eval.top();
+            eval.pop();
+
+            if (token == "+") {
+    eval.push(a + b);
+} else if (token == "-") {
+    eval.push(a - b);
+} else if (token == "*") {
+    eval.push(a * b);
+} else if (token == "/") {
+    eval.push(a / b);
+} else if (token == "%") {
+    eval.push(a % b);
+} 
+        }
+    }
+ return eval.top();
+}
