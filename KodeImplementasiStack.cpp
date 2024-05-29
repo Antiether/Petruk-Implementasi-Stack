@@ -9,6 +9,7 @@ using namespace std;
 bool JenisOperasi(char A);
 int cekprecedence(char op);
 
+vector<string> KonversiPostfix(vector<string>& infix);
 vector<string> KonversiInfix(string str);
 int evaluasi(const vector<string>& postfix);
 
@@ -33,6 +34,37 @@ int cekprecedence(char op) {
         return 2;
     } else {
         return 0;
+
+vector<string> KonversiPostfix(vector<string>& infix) {
+    vector<string> postfix;
+    stack<string> opStack;
+
+    for (const string& token : infix) {
+        if (isdigit(token[0]) || (token.length() > 1 && isdigit(token[1]))) {
+            postfix.push_back(token);
+        } else if (token == "(") {
+            opStack.push(token);
+        } else if (token == ")") {
+            while (!opStack.empty() && opStack.top() != "(") {
+                postfix.push_back(opStack.top());
+                opStack.pop();
+            }
+            opStack.pop();
+        } else {
+            while (!opStack.empty() && cekprecedence(opStack.top()[0]) >= cekprecedence(token[0])) {
+                postfix.push_back(opStack.top());
+                opStack.pop();
+            }
+            opStack.push(token);
+        }
+    }
+
+    while (!opStack.empty()) {
+        postfix.push_back(opStack.top());
+        opStack.pop();
+    }
+    return postfix;
+}
     }
 }
 bool JenisOperasi(char A) {
