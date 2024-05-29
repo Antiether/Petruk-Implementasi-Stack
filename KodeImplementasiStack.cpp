@@ -6,7 +6,9 @@
 #include <stack>
 using namespace std;
 
+bool JenisOperasi(char A);
 int cekprecedence(char op);
+
 
 int main() {
     string input;
@@ -31,4 +33,7 @@ int cekprecedence(char op) {
     } else {
         return 0;
     }
+}
+bool JenisOperasi(char A) {
+    return (A == '*' or A == '/' or A == '+' or A == '-' or A == '%');
 }
