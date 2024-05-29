@@ -9,7 +9,8 @@ using namespace std;
 bool JenisOperasi(char A);
 int cekprecedence(char op);
 
-vector<string> KonversiInfix(string str); 
+vector<string> KonversiInfix(string str);
+int evaluasi(const vector<string>& postfix);
 
 
 int main() {
