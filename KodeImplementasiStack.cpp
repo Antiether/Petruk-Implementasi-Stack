@@ -6,15 +6,14 @@
 #include <stack>
 using namespace std;
 
-bool JenisOperasi(char A);
-int cekprecedence(char op);
+bool JenisOperasi(char A); //deglarasi program fung JenisOperasi yaitu ebuah fungsi yang memeriksa apakah karakter yang diberikan adalah salah satu dari operator aritmatika dasar 
+int cekprecedence(char op); //deglarasi program fungsi cekPrecedence yaitu sebuah fungsi yang menentukan prioritas (precedence) dari operator aritmatika. 
+vector<string> KonversiPostfix(vector<string>& infix);  //deglarasi program ekspresi matematika yang mengonversi ekspresi infix menjadi postfix (InfixToPostfix). 
+vector<string> KonversiInfix(string str); //deglarasi program atau fungsi ekspresi matematika yang berguna untuk mengkonversi string aritmatika menjadi ekspresi infix (StringToInfix)
+int evaluasi(const vector<string>& postfix); //deglarasi program kalkulator ekspresi  evaluasi aritmatika.
 
-vector<string> KonversiPostfix(vector<string>& infix);
-vector<string> KonversiInfix(string str);
-int evaluasi(const vector<string>& postfix);
 
-
-int main() {
+int main() {  //Membuat program awal bagian dari implementasi kalkulator ekspresi matematika
     string input;
     getline(cin, input);
 
@@ -26,8 +25,11 @@ int main() {
 
 return 0;
 }
+bool JenisOperasi(char A) { //program fung JenisOperasi yaitu ebuah fungsi yang memeriksa apakah karakter yang diberikan adalah salah satu dari operator aritmatika dasar 
 
-int cekprecedence(char op) {
+    return (A == '*' or A == '/' or A == '+' or A == '-' or A == '%');
+}
+int cekprecedence(char op) { //program fungsi cekPrecedence yaitu sebuah fungsi yang menentukan prioritas (precedence) dari operator aritmatika. 
     if (op == '+' or op == '-') {
         return 1;
     } else if (op == '*' or op == '/' or op == '%') {
@@ -35,7 +37,8 @@ int cekprecedence(char op) {
     } else {
         return 0;
 
-vector<string> KonversiPostfix(vector<string>& infix) {
+vector<string> KonversiPostfix(vector<string>& infix) {  //program ekspresi matematika yang mengonversi ekspresi infix menjadi postfix (InfixToPostfix). 
+
     vector<string> postfix;
     stack<string> opStack;
 
@@ -67,13 +70,9 @@ vector<string> KonversiPostfix(vector<string>& infix) {
 }
     }
 }
-bool JenisOperasi(char A) {
-    return (A == '*' or A == '/' or A == '+' or A == '-' or A == '%');
-}
 
 
-
-vector<string> KonversiInfix(string str) {
+vector<string> KonversiInfix(string str) {  //program atau fungsi ekspresi matematika yang berguna untuk mengkonversi string aritmatika menjadi ekspresi infix (StringToInfix)
     vector<string> infix;
 string digit; 
 
@@ -112,7 +111,7 @@ if (!digit.empty()) {
 return infix;
 }
 
-int evaluasi(const vector<string>& postfix) {
+int evaluasi(const vector<string>& postfix) { //program kalkulator ekspresi  evaluasi aritmatika.
     stack<int> eval;
 
     for (const string& token : postfix) {
